@@ -208,7 +208,7 @@ Add all wanted permissions to your app `android/app/src/main/AndroidManifest.xml
 If you use Expo, the previous sections don't apply. Instead just update your app config file with the corresponding values, using one of the syntaxes exemplified below:
 
 <details open>
-<summary><strong>With dynamic configuration (app.config.js, app.config.ts)</strong></summary>
+<summary><strong>Dynamic configuration (app.config.js, app.config.ts)</strong></summary>
 
 ```ts
 import type {ConfigContext, ExpoConfig} from 'expo/config';
@@ -239,7 +239,7 @@ export default ({config}: ConfigContext): ExpoConfig => ({
 </details>
 
 <details>
-<summary><strong>With static configuration (app.json)</strong></summary>
+<summary><strong>Static configuration (app.json)</strong></summary>
 
 ```jsonc
 {
