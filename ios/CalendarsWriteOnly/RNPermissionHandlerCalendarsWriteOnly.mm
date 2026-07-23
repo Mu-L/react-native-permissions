@@ -45,7 +45,12 @@
     }
   };
 
-  EKEventStore *store = [EKEventStore new];
+  static EKEventStore *store = nil;
+  static dispatch_once_t onceToken;
+
+  dispatch_once(&onceToken, ^{
+    store = [EKEventStore new];
+  });
 
   if (@available(iOS 17.0, *)) {
     [store requestWriteOnlyAccessToEventsWithCompletion:completion];
