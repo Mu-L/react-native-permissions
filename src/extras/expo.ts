@@ -1,10 +1,10 @@
 import {
+  CodeGenerator,
   createRunOncePlugin,
   withDangerousMod,
   type ConfigPlugin,
   type ExportedConfigWithProps,
 } from '@expo/config-plugins';
-import {mergeContents} from '@expo/config-plugins/build/utils/generateCode';
 import {readFile, writeFile} from 'node:fs/promises';
 import {join} from 'node:path';
 
@@ -50,7 +50,7 @@ const plugin: ConfigPlugin<Partial<PermissionsPluginConfig> | undefined> = (
       const filePath = join(config.modRequest.platformProjectRoot, 'Podfile');
       const contents = await readFile(filePath, 'utf8');
 
-      const withRequire = mergeContents({
+      const withRequire = CodeGenerator.mergeContents({
         tag: 'require',
         src: contents,
         anchor:
@@ -60,7 +60,7 @@ const plugin: ConfigPlugin<Partial<PermissionsPluginConfig> | undefined> = (
         comment: '#',
       });
 
-      const withSetup = mergeContents({
+      const withSetup = CodeGenerator.mergeContents({
         tag: 'setup',
         src: withRequire.contents,
         anchor: /^prepare_react_native_project!$/m,
